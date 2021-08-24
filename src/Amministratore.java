@@ -19,11 +19,11 @@ public class Amministratore {
         int choice;
         while (goboss){
             System.out.println("-------------------------");
-            System.out.println("0 - Aggiungi utente (ADD_UTENTE)");
-            System.out.println("1 - Rimuovi utente (REMOVE_UTENTE) ");
-            System.out.println("2 - Mostra utenti (LIST_UTENTI)");
-            System.out.println("3 - Salva utente (SAVE)");
-            System.out.println("4 - Carica utenti (CARICA)");
+            System.out.println("0 - Aggiungi dipendente (ADD_UTENTE)");
+            System.out.println("1 - Rimuovi dipendente (REMOVE_UTENTE) ");
+            System.out.println("2 - Mostra lista dipendenti (LIST_UTENTI)");
+            System.out.println("3 - Salva dipendenti (SAVE)");
+            System.out.println("4 - Carica dipendenti (CARICA)");
             System.out.println("5 - QUIT");
             System.out.println("-------------------------");
             System.out.println("Inserisci la tua scelta->");
