@@ -19,7 +19,7 @@ public class TavoloList {
         last_modification = new Date().toString();
         String responso = null;
         for (Tavolo ta : list){
-            if (ta.getID()==t.getID()){
+            if( (ta.getID()==t.getID()) ){
             list.remove(ta);
             responso = "REMOVE_OK";
             return responso;

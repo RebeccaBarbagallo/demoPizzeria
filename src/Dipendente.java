@@ -7,9 +7,9 @@ public class Dipendente {
 
     public void menu(Socket socket) throws IOException {
         PrintWriter pw = new PrintWriter(socket.getOutputStream());
-        //from server
+        //dal server
         Scanner server_scanner = new Scanner(socket.getInputStream());
-        //from user
+        //dall'utente
         Scanner user_scanner = new Scanner(System.in);
 
         String msg_to_send;
@@ -24,7 +24,7 @@ public class Dipendente {
             System.out.println("0 - LOGIN");
             System.out.println("1 - EXIT");
             System.out.println("---------------------------");
-            System.out.println("Inserisci la tua scelta -->");
+            System.out.println("Inserisci la tua scelta: ");
             choice = user_scanner.nextInt();
 
             switch (choice) {
@@ -50,7 +50,7 @@ public class Dipendente {
                             System.out.println("4 - Mostra Comanda (SHOW COMANDA)");
                             System.out.println("5 - QUIT");
                             System.out.println("---------------------------");
-                            System.out.println("Inserisci la tua scelta--> ");
+                            System.out.println("Inserisci la tua scelta: ");
                             choice = user_scanner.nextInt();
 
                             switch (choice) {
@@ -59,7 +59,7 @@ public class Dipendente {
                                     //0 - Aggiungi Pietanza (ADD_PIATTO)
                                     System.out.println("Inserisci nome piatto: ");
                                     String nome = user_scanner.next();
-                                    nome = nome.toUpperCase();
+                                    nome=nome.toUpperCase();
                                     System.out.println("Inserisci prezzo: ");
                                     int prezzo = user_scanner.nextInt();
 
@@ -84,7 +84,7 @@ public class Dipendente {
                                     String nomer = user_scanner.next();
                                     nomer = nomer.toUpperCase();
                                     msg_to_send = "REMOVE_PIATTO " + nomer;
-                                    System.out.println("Inviato " + msg_to_send);
+                                    System.out.println("Debug: Inviato " + msg_to_send);
                                     pw.println(msg_to_send);
                                     pw.flush();
 
@@ -153,7 +153,7 @@ public class Dipendente {
                                     int idt = user_scanner.nextInt();
                                     msg_to_send = "SHOW_COMANDA " + idt;
 
-                                    System.out.println("Inviato " + msg_to_send);
+                                    System.out.println("Debug: Inviato " + msg_to_send);
                                     pw.println(msg_to_send);
                                     pw.flush();
 
@@ -189,14 +189,14 @@ public class Dipendente {
                         while (gocameriere) {
                             System.out.println("---------------------------");
                             System.out.println("0 - Crea Tavolo (TAVOLO)");
-                            System.out.println("1 - Aggiungi Pietanza al Tavolo (ADD_PIATTO_TAVOLO)");
+                            System.out.println("1 - Aggiungi Pietanza al Tavolo (ADDPIATTOTAVOLO)");
                             System.out.println("2 - Conto (CONTO)");
                             System.out.println("3 - Mostra Menu' (LIST_MENU)");
                             System.out.println("4 - Mostra Comanda (SHOW_COMANDA)");
                             System.out.println("5 - Elimina Tavolo (REMOVE_TAVOLO)");
                             System.out.println("6 - QUIT");
                             System.out.println("---------------------------");
-                            System.out.println("Inserisci la tua scelta-->");
+                            System.out.println("Inserisci la tua scelta:");
 
                             choice = user_scanner.nextInt();
                             switch (choice) {
@@ -207,7 +207,7 @@ public class Dipendente {
                                     System.out.println("Inserisci Numero Coperti: ");
                                     int coperti = user_scanner.nextInt();
                                     msg_to_send = "TAVOLO " + id + " " + coperti;
-                                    System.out.println("Inviato " + msg_to_send);
+                                    System.out.println("Debug: Inviato " + msg_to_send);
                                     pw.println(msg_to_send);
                                     pw.flush();
 
@@ -222,16 +222,16 @@ public class Dipendente {
                                     break;
 
                                 case 1:
-                                    //1 - Aggiungi Pietanza al Tavolo (ADD_PIATTO_TAVOLO)
+                                    //1 - Aggiungi Pietanza al Tavolo (ADDPIATTOTAVOLO)
                                     System.out.println("Inserisci ID Tavolo ");
                                     int idt = user_scanner.nextInt();
                                     System.out.println("Inserisci Nome Piatto: ");
                                     String nome = user_scanner.next();
                                     nome = nome.toUpperCase();
 
-                                    msg_to_send = "ADD_PIATTO_TAVOLO " + idt + " " + nome;
+                                    msg_to_send = "ADDPIATTOTAVOLO " + idt + " " + nome;
 
-                                    System.out.println("DEBUG: Sending " + msg_to_send);
+                                    System.out.println("DEBUG: Inviato " + msg_to_send);
                                     pw.println(msg_to_send);
                                     pw.flush();
 
@@ -254,7 +254,7 @@ public class Dipendente {
                                     pw.flush();
 
                                     msg_received = server_scanner.nextLine();
-                                    System.out.println("Il conto del tavolo " + idT + " e': " + msg_received);
+                                    System.out.println("Il conto del tavolo "+idT+" e': "+ msg_received);
                                     break;
 
                                 case 3:
@@ -264,13 +264,13 @@ public class Dipendente {
                                     pw.flush();
 
                                     msg_received = server_scanner.nextLine();
-                                    boolean listing = true;
+                                    boolean listening = true;
                                     if (msg_received.equals("BEGIN")) {
                                         System.out.println("Ricezione lista..");
-                                        while (listing) {
+                                        while (listening) {
                                             msg_received = server_scanner.nextLine();
                                             if (msg_received.equals("END")) {
-                                                listing = false;
+                                                listening = false;
                                                 System.out.println("Fine lista");
                                             } else {
                                                 System.out.println(msg_received);
@@ -287,18 +287,18 @@ public class Dipendente {
                                     int idtt = user_scanner.nextInt();
                                     msg_to_send = "SHOW_COMANDA " + idtt;
 
-                                    System.out.println("DEBUG: Sending " + msg_to_send);
+                                    System.out.println("DEBUG: Inviato " + msg_to_send);
                                     pw.println(msg_to_send);
                                     pw.flush();
 
                                     msg_received = server_scanner.nextLine();
-                                    boolean listingc = true;
+                                    boolean listeningc = true;
                                     if (msg_received.equals("BEGIN")) {
                                         System.out.println("Ricezione lista...");
-                                        while (listingc) {
+                                        while (listeningc) {
                                             msg_received = server_scanner.nextLine();
                                             if (msg_received.equals("END")) {
-                                                listingc = false;
+                                                listeningc = false;
                                                 System.out.println("Fine lista");
                                             } else {
                                                 System.out.println(msg_received);
@@ -313,7 +313,7 @@ public class Dipendente {
 
                                 case 5:
                                     //5 - Elimina Tavolo (REMOVE_TAVOLO)
-                                    System.out.println("Inserire ID del tavolo da eliminare");
+                                    System.out.println("Inserire ID del tavolo da eliminare: ");
                                     int idTa = user_scanner.nextInt();
                                     msg_to_send = "REMOVE_TAVOLO " + idTa;
                                     pw.println(msg_to_send);

@@ -13,12 +13,12 @@ public class Tavolo implements Serializable {
         this.coperti = coperti;
     }
 
-    public ArrayList<Piatto> getListaCons(){
+    public ArrayList<Piatto> getListaCons() {
         return listaCons;
     }
 
     public void insCons(Piatto pi){
-        conto = conto + pi.getPrezzo();
+        conto=conto+pi.getPrezzo();
         listaCons.add(pi);
     }
 
@@ -52,7 +52,10 @@ public class Tavolo implements Serializable {
 
     @Override
     public String toString() {
-        return "Tavolo (" + "ID:" + ID + ", coperti:" + coperti +
-                ", conto:" + conto + ")";
+        return "Tavolo (" +
+                "ID:" + ID +
+                ", coperti:" + coperti +
+                ", conto:" + conto +
+                ')';
     }
 }

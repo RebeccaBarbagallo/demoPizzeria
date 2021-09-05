@@ -18,8 +18,9 @@ public class PiattoList {
     public synchronized String remove(String nome){
         last_modification = new Date().toString();
         String responso = null;
-        for (Piatto pi: list){
-            if ((pi.getNome().equals(nome))){
+        for ( Piatto pi: list){
+            if( (pi.getNome().equals(nome)))
+            {
                 list.remove(pi);
                 responso = "REMOVE_OK";
                 return responso;
@@ -45,7 +46,7 @@ public class PiattoList {
             s = s + "Nome: " + p.getNome();
             s = s + "Prezzo: " + p.getPrezzo();
         }
-        s = s + "END:LIST";
+        s = s + "END_LIST";
         return s;
     }
 }

@@ -1,15 +1,19 @@
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Amministratore {
 
     public void menu(Socket socket) throws IOException {
         PrintWriter pw = new PrintWriter(socket.getOutputStream());
-        //from server
+        //dal server
         Scanner server_scanner = new Scanner(socket.getInputStream());
-        //from server
+        //dall'utente
         Scanner user_scanner = new Scanner(System.in);
 
         String msg_to_send;
@@ -26,7 +30,7 @@ public class Amministratore {
             System.out.println("4 - Carica dipendenti (CARICA)");
             System.out.println("5 - QUIT");
             System.out.println("-------------------------");
-            System.out.println("Inserisci la tua scelta->");
+            System.out.println("Inserisci la tua scelta:");
             choice = user_scanner.nextInt();
 
             switch (choice){

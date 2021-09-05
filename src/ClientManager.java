@@ -1,9 +1,7 @@
-
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class ClientManager implements Runnable {
 
@@ -49,7 +47,7 @@ public class ClientManager implements Runnable {
         boolean go = true;
         while (go){
             String message = client_scanner.nextLine();
-            System.out.println("Server: Received " + message);
+            System.out.println("Server: Ricevuto " + message);
             Scanner msg_scanner = new Scanner(message);
 
             String cmd = msg_scanner.next();
@@ -64,7 +62,7 @@ public class ClientManager implements Runnable {
                 Utente u = new Utente(cf,nome,cognome,mansione);
 
                 lutente.add(u);
-                System.out.println("Server: Added " + u);
+                System.out.println("Server: Aggiunto " + u);
 
                 pw.println("ADD_OK");
                 pw.flush();
@@ -80,7 +78,7 @@ public class ClientManager implements Runnable {
                 pw.flush();
                 ArrayList<Utente> tmp;
                 tmp = lutente.getListCopy();
-                for (Utente u : tmp){
+                for (Utente u: tmp){
                     pw.println(u);
                     pw.flush();
                 }
@@ -143,7 +141,6 @@ public class ClientManager implements Runnable {
             }
             else if (cmd.equals("ADD_PIATTO")){
                 String nome = msg_scanner.next();
-                nome.toUpperCase();
                 int prezzo = msg_scanner.nextInt();
 
                 Piatto pia = new Piatto(nome,prezzo);
@@ -203,13 +200,13 @@ public class ClientManager implements Runnable {
                 tmp = ltavolo.getListCopy();
                 ArrayList<Piatto> tmpp;
                 for (Tavolo ta: tmp){
-                    if (id==ta.getID()){
-                        tmpp = ta.getListaCons();
+                    if(id==ta.getID()){
+                        tmpp=ta.getListaCons();
                         pw.println("BEGIN");
                         pw.flush();
 
                         for (Piatto p: tmpp){
-                            pw.println("END");
+                            pw.println(p);
                             pw.flush();
                         }
                         pw.println("END");
@@ -229,7 +226,7 @@ public class ClientManager implements Runnable {
                 pw.println("ADD_OK");
                 pw.flush();
             }
-            else if (cmd.equals("ADD_PIATTO_TAVOLO")){
+            else if (cmd.equals("ADDPIATTOTAVOLO")){
                 int id = msg_scanner.nextInt();
                 String nome = msg_scanner.next();
                 int prezzo = 0;
@@ -237,7 +234,7 @@ public class ClientManager implements Runnable {
                 ArrayList<Piatto> tmpP;
                 tmpP=menu.showMenu();
 
-                for (Piatto pi: tmpP){
+                for ( Piatto pi: tmpP){
                     if ((pi.getNome().equals(nome))){
                         prezzo = pi.getPrezzo();
                     }
@@ -263,7 +260,7 @@ public class ClientManager implements Runnable {
                 int id = msg_scanner.nextInt();
                 int conto;
                 for (Tavolo ta: tmp){
-                    if (id==ta.getConto()){
+                    if(id==ta.getID()){
                         conto=ta.getConto();
                         pw.println(conto);
                         pw.flush();

@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +21,8 @@ public class Menu {
         last_modification = new Date().toString();
         String responso = null;
         for (Piatto pi : list){
-            if ((pi.getNome().equals(nome))){
+            if ( (pi.getNome().equals(nome)))
+            {
                 list.remove(pi);
                 saveMenu(list);
                 responso = "REMOVE_OK";
@@ -35,12 +35,12 @@ public class Menu {
     }
 
     public ArrayList<Piatto> showMenu(){
+
         ObjectInputStream is;
+
         try {
             is = new ObjectInputStream(new FileInputStream("menu.ser"));
             list = (ArrayList<Piatto>) is.readObject();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -49,14 +49,12 @@ public class Menu {
         return list;
     }
 
-    public void saveMenu(ArrayList<Piatto> list) {
+    public void saveMenu(ArrayList list) {
         try {
             var oos = new ObjectOutputStream(new FileOutputStream("menu.ser"));
             oos.writeObject(list);
             oos.close();
             System.out.println("Lista salvata correttamente");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Save_Error");
             e.printStackTrace();

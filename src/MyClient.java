@@ -31,11 +31,11 @@ public class MyClient {
             socket = new Socket(address,port);
             System.out.println("Started client connection to "+ address + "," + port );
 
-            //to Server
+            //al Server
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
-            //form server
+            //dal Server
             Scanner server_scanner = new Scanner(socket.getInputStream());
-            //from user
+            //dall'utente
             Scanner user_scanner = new Scanner(System.in);
 
             String msg_to_send;
@@ -49,7 +49,7 @@ public class MyClient {
                 System.out.println("0 - BOSS");
                 System.out.println("1 - DIPENDENTE");
                 System.out.println("2 - EXIT");
-                System.out.println("Inserisci la tua scelta->");
+                System.out.println("Inserisci la tua scelta:");
                 choice = user_scanner.nextInt();
 
                 switch (choice){

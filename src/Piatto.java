@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class Piatto implements Serializable {
 
-    private String nome;
+    private String Nome;
     private int prezzo;
 
     public Piatto(String nome, int prezzo){
@@ -11,11 +11,11 @@ public class Piatto implements Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        Nome = nome;
     }
 
     public int getPrezzo() {
@@ -28,8 +28,9 @@ public class Piatto implements Serializable {
 
     @Override
     public String toString() {
-        return "Piatto ordinato (" +
-                "Nome:" + nome +
-                "" + ", Prezzo: " + prezzo + ")";
+        return "Piatto {" +
+                "Nome:" + Nome +
+                ", prezzo: " + prezzo +
+                '}';
     }
 }
