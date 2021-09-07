@@ -122,6 +122,17 @@ public class ClientManager implements Runnable {
                 System.out.println("Chiusura cassa: " + ltavolo.chiusuraCassa());
                 pw.println(ltavolo.chiusuraCassa());
                 pw.flush();
+                try {
+                    var oos = new ObjectOutputStream(new FileOutputStream("chiusuracassa.ser"));
+                    oos.writeObject(ltavolo.chiusuraCassa());
+                    oos.close();
+                    pw.flush();
+                    System.out.println("Server: lista salvata correttamente");
+                } catch (IOException e) {
+                    pw.println("SAVE_ERROR");
+                    pw.flush();
+                    e.printStackTrace();
+                    }
                 }
              else if (cmd.equals("CODICE")){
                 ArrayList<Utente> tmp;
