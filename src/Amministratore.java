@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Amministratore {
 
@@ -18,6 +20,7 @@ public class Amministratore {
 
         String msg_to_send;
         String msg_received;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         boolean goboss = true;
         int choice;
@@ -132,7 +135,7 @@ public class Amministratore {
                     pw.flush();
 
                     msg_received = server_scanner.nextLine();
-                    System.out.println("L'incasso di oggi e' di euro: "+ msg_received);
+                    System.out.println("L'incasso di oggi " + dtf.format(LocalDateTime.now()) + " e' di euro: "+ msg_received);
                     break;
 
                 case 6:
