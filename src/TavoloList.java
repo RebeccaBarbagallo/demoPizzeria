@@ -15,6 +15,14 @@ public class TavoloList {
         list.add(t);
     }
 
+    public synchronized float chiusuraCassa(){
+        float cassa=0;
+        for (Tavolo t:list) {
+            cassa += t.getConto();
+        }
+        return cassa;
+    }
+
     public synchronized String remove(Tavolo t){
         last_modification = new Date().toString();
         String responso = null;
@@ -30,11 +38,13 @@ public class TavoloList {
         return responso;
     }
 
+
     public ArrayList<Tavolo> getListCopy(){
         ArrayList<Tavolo> a_list = new ArrayList<>();
         a_list.addAll(list);
         return a_list;
     }
+
 
     @Override
     public String toString() {

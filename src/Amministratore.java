@@ -28,7 +28,8 @@ public class Amministratore {
             System.out.println("2 - Mostra lista dipendenti (LIST_UTENTI)");
             System.out.println("3 - Salva dipendenti (SAVE)");
             System.out.println("4 - Carica dipendenti (CARICA)");
-            System.out.println("5 - QUIT");
+            System.out.println("5 - Chiusura di cassa (CASSA)");
+            System.out.println("6 - QUIT");
             System.out.println("-------------------------");
             System.out.println("Inserisci la tua scelta:");
             choice = user_scanner.nextInt();
@@ -125,6 +126,16 @@ public class Amministratore {
                     break;
 
                 case 5:
+                    //Chiusura di cassa (CASSA)
+                    msg_to_send = "CASSA";
+                    pw.println(msg_to_send);
+                    pw.flush();
+
+                    msg_received = server_scanner.nextLine();
+                    System.out.println("L'incasso di oggi e' di euro: "+ msg_received);
+                    break;
+
+                case 6:
                     goboss = false;
                     System.out.println("Torna indietro");
                     break;

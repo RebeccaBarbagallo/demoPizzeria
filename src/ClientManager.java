@@ -17,7 +17,7 @@ public class ClientManager implements Runnable {
         this.ltavolo = ltavolo;
         this.lpiatto = lpiatto;
         this.menu = menu;
-    }
+     }
 
     @Override
     public void run() {
@@ -118,7 +118,12 @@ public class ClientManager implements Runnable {
                 }
                 go = false;
             }
-            else if (cmd.equals("CODICE")){
+            else if (cmd.equals("CASSA")) {
+                System.out.println("Chiusura cassa: " + ltavolo.chiusuraCassa());
+                pw.println(ltavolo.chiusuraCassa());
+                pw.flush();
+                }
+             else if (cmd.equals("CODICE")){
                 ArrayList<Utente> tmp;
                 tmp = lutente.getListCopy();
                 String cf = msg_scanner.next();
@@ -260,10 +265,10 @@ public class ClientManager implements Runnable {
                 int id = msg_scanner.nextInt();
                 int conto;
                 for (Tavolo ta: tmp){
-                    if(id==ta.getID()){
-                        conto=ta.getConto();
-                        pw.println(conto);
-                        pw.flush();
+                            if(id==ta.getID()){
+                                conto=ta.getConto();
+                                pw.println(conto);
+                                pw.flush();
                     }
                 }
             }

@@ -48,6 +48,8 @@ public class MyServer {
         } catch (IOException e) {
             System.out.println("Non può partire il Server sulla porta " + port);
             e.printStackTrace();
+
         }
     }
 }
+

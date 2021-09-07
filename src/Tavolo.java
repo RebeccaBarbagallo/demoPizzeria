@@ -8,6 +8,7 @@ public class Tavolo implements Serializable {
     private int conto;
     private ArrayList<Piatto> listaCons = new ArrayList<>();
 
+
     public Tavolo(int ID, int coperti){
         this.ID = ID;
         this.coperti = coperti;
@@ -49,6 +50,7 @@ public class Tavolo implements Serializable {
     public void setConto(int conto) {
         this.conto = conto;
     }
+
 
     @Override
     public String toString() {
