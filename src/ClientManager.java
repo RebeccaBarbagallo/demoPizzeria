@@ -27,6 +27,7 @@ public class ClientManager implements Runnable {
         Scanner client_scanner = null;
         PrintWriter pw = null;
 
+
         try {
             client_scanner = new Scanner(client_socket.getInputStream());
             pw = new PrintWriter(client_socket.getOutputStream());
@@ -122,8 +123,8 @@ public class ClientManager implements Runnable {
                 System.out.println("Chiusura cassa: " + ltavolo.chiusuraCassa());
                 pw.println(ltavolo.chiusuraCassa());
                 pw.flush();
-                try {
-                    var oos = new ObjectOutputStream(new FileOutputStream("chiusuracassa.ser"));
+               try {
+                    var oos = new ObjectOutputStream(new FileOutputStream("chiusuracassa.txt"));
                     oos.writeObject(ltavolo.chiusuraCassa());
                     oos.close();
                     pw.flush();

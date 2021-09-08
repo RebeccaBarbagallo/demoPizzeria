@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class TavoloList {
+public class TavoloList{
 
     String last_modification;
     private ArrayList<Tavolo> list;
