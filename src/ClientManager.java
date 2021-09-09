@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ClientManager implements Runnable {
 
@@ -22,11 +24,11 @@ public class ClientManager implements Runnable {
     @Override
     public void run() {
         String tid = Thread.currentThread().getName();
-        System.out.println(tid + "-> Accepted connection from " + client_socket.getRemoteSocketAddress());
+        System.out.println(tid + " -> Accepted connection from " + client_socket.getRemoteSocketAddress());
 
         Scanner client_scanner = null;
         PrintWriter pw = null;
-
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         try {
             client_scanner = new Scanner(client_socket.getInputStream());
@@ -123,18 +125,20 @@ public class ClientManager implements Runnable {
                 System.out.println("Chiusura cassa: " + ltavolo.chiusuraCassa());
                 pw.println(ltavolo.chiusuraCassa());
                 pw.flush();
-               try {
-                    var oos = new ObjectOutputStream(new FileOutputStream("chiusuracassa.txt"));
-                    oos.writeObject(ltavolo.chiusuraCassa());
-                    oos.close();
-                    pw.flush();
-                    System.out.println("Server: lista salvata correttamente");
-                } catch (IOException e) {
-                    pw.println("SAVE_ERROR");
-                    pw.flush();
-                    e.printStackTrace();
-                    }
+                File chiusuracassa = new File("chiusuracassa.txt");
+                try{
+                    //questo sovrascive
+                    //PrintWriter p = new PrintWriter("chiusuracassa.txt", "UTF-8");
+                    //questo fa linee separate leggibile
+                    PrintWriter p = new PrintWriter(new FileWriter(chiusuracassa, true));
+                    p.println(dtf.format(LocalDateTime.now()) + " - " + ltavolo.chiusuraCassa() + " euro");
+                    p.close();
                 }
+                catch (IOException e){
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+              }
              else if (cmd.equals("CODICE")){
                 ArrayList<Utente> tmp;
                 tmp = lutente.getListCopy();
